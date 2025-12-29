@@ -107,10 +107,12 @@ assignment-2-api/
 **Purpose:** Fetch 5 latest news headlines from user's country
 
 **What it returns:**
-- Article title
+- Article title (filtered to ensure it contains the country name)
 - Description
 - Image (if available)
 - Source URL
+
+**Note:** The server-side filtering ensures that all returned headlines contain the user's country name in the title, and articles are in English language.
 
 **Used by:** Frontend to display news from user's country
 
@@ -172,8 +174,9 @@ Each API needs data from the previous one:
 - Added proper error logging: `console.error()`
 - Environment variable for REST Countries (demonstration)
 - Currency validation before exchange API call
-- News data cleaning (filter removed articles)
-- Better error messages
+- News data cleaning (filter removed articles and ensure headlines contain country name)
+- URL encoding for country names with special characters
+- Better error messages and graceful handling of missing data
 
 #### 2. **Frontend (app.js)**
 - Added loading state: `"⏳ Loading..."`

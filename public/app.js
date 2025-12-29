@@ -14,7 +14,7 @@ document.getElementById("btn").addEventListener("click", async () => {
     }
 
     // fetch country information based on user's country
-    const country = await fetch(`/api/country/${user.country}`).then(res => res.json());
+    const country = await fetch(`/api/country/${encodeURIComponent(user.country)}`).then(res => res.json());
     
     if (country.error) {
       throw new Error(country.error);
@@ -27,7 +27,8 @@ document.getElementById("btn").addEventListener("click", async () => {
     }
 
     // fetch news articles about the user's country
-    const news = await fetch(`/api/news/${user.country}`).then(res => res.json());
+    const newsResponse = await fetch(`/api/news/${encodeURIComponent(user.country)}`).then(res => res.json());
+    const news = newsResponse.error ? [] : newsResponse;
 
     // display all data in structured cards
     content.innerHTML = `
